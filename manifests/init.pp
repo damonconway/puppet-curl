@@ -43,7 +43,7 @@ class curl (
   $ensure_dev_pkg   = 'absent',
   $install_options  = undef,
   $package_name     = $curl::params::package_name
-) {
+) inherits curl::params {
 
   include curl::install
 
