@@ -4,9 +4,9 @@ class curl::params () {
   case $::osfamily {
     'RedHat': {
       $package_name = 'curl'
-      $dev_package_name = $::operatingsystemrelease ? {
-        /^5(.*)/ => 'curl-devel',
-        default  => 'libcurl-devel',
+      $dev_package_name = $::lsbmajdistrelease ? {
+        '5'     => 'curl-devel',
+        default => 'libcurl-devel',
       }
     }
 
@@ -16,7 +16,7 @@ class curl::params () {
     }
 
     default: {
-      fail("${::operatingsystem} not supported.")
+      fail("Unsupported osfamily: ${::osfamily}")
     }
   }
 
